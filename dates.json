@@ -4,6 +4,15 @@
         "games": [
             {
                 "url": "/boxscores/201412010LAC.html"
+            },
+            {
+                "url": "/boxscores/201412010PHI.html"
+            },
+            {
+                "url": "/boxscores/201412010UTA.html"
+            },
+            {
+                "url": "/boxscores/201412010WAS.html"
             }
         ]
     },
@@ -12,6 +21,33 @@
         "games": [
             {
                 "url": "/boxscores/201412020ATL.html"
+            },
+            {
+                "url": "/boxscores/201412020CHI.html"
+            },
+            {
+                "url": "/boxscores/201412020CLE.html"
+            },
+            {
+                "url": "/boxscores/201412020DEN.html"
+            },
+            {
+                "url": "/boxscores/201412020DET.html"
+            },
+            {
+                "url": "/boxscores/201412020GSW.html"
+            },
+            {
+                "url": "/boxscores/201412020NOP.html"
+            },
+            {
+                "url": "/boxscores/201412020NYK.html"
+            },
+            {
+                "url": "/boxscores/201412020PHO.html"
+            },
+            {
+                "url": "/boxscores/201412020SAC.html"
             }
         ]
     },
@@ -20,6 +56,33 @@
         "games": [
             {
                 "url": "/boxscores/201412030BOS.html"
+            },
+            {
+                "url": "/boxscores/201412030BRK.html"
+            },
+            {
+                "url": "/boxscores/201412030CHO.html"
+            },
+            {
+                "url": "/boxscores/201412030HOU.html"
+            },
+            {
+                "url": "/boxscores/201412030LAC.html"
+            },
+            {
+                "url": "/boxscores/201412030MIA.html"
+            },
+            {
+                "url": "/boxscores/201412030MIL.html"
+            },
+            {
+                "url": "/boxscores/201412030MIN.html"
+            },
+            {
+                "url": "/boxscores/201412030UTA.html"
+            },
+            {
+                "url": "/boxscores/201412030WAS.html"
             }
         ]
     },
@@ -28,6 +91,12 @@
         "games": [
             {
                 "url": "/boxscores/201412040GSW.html"
+            },
+            {
+                "url": "/boxscores/201412040NYK.html"
+            },
+            {
+                "url": "/boxscores/201412040POR.html"
             }
         ]
     },
@@ -36,6 +105,39 @@
         "games": [
             {
                 "url": "/boxscores/201412050BOS.html"
+            },
+            {
+                "url": "/boxscores/201412050BRK.html"
+            },
+            {
+                "url": "/boxscores/201412050CHO.html"
+            },
+            {
+                "url": "/boxscores/201412050DAL.html"
+            },
+            {
+                "url": "/boxscores/201412050MEM.html"
+            },
+            {
+                "url": "/boxscores/201412050MIL.html"
+            },
+            {
+                "url": "/boxscores/201412050MIN.html"
+            },
+            {
+                "url": "/boxscores/201412050PHI.html"
+            },
+            {
+                "url": "/boxscores/201412050SAC.html"
+            },
+            {
+                "url": "/boxscores/201412050TOR.html"
+            },
+            {
+                "url": "/boxscores/201412050UTA.html"
+            },
+            {
+                "url": "/boxscores/201412050WAS.html"
             }
         ]
     },

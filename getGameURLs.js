@@ -38,7 +38,8 @@ function getGamesFromDate(dateStr, cb){
       var rv = []
       var $ = cheerio.load(html);
 
-      $('.stw .align_right.bold_text a').each(function(){
+      $('.align_right.bold_text a').each(function(i){
+      	console.log(i)
         rv.push({url: $(this).attr('href')})
       })
   	}
