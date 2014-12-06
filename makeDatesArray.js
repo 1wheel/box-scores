@@ -11,11 +11,10 @@ var dates = JSON.parse(fs.readFileSync('dates.json', 'utf8'));
 
 var dateStrs = dates.map(f('str'))
 
-d3.time.days(dateFmt.parse('month=7&day=1&year=1985'), new Date(), 1).forEach(function(d){
+d3.time.days(dateFmt.parse('month=12&day=1&year=2014'), new Date(), 1).forEach(function(d){
 	if (!_.contains(dateStrs, dateFmt(d))){
 		dates.push({str: dateFmt(d)})
 	}
 })
-
 
 fs.writeFile('dates.json', JSON.stringify(dates, null, 4))
