@@ -19,14 +19,7 @@ dates.forEach(function(d){
 	q.defer(getGamesFromDate, d.str)
 })
 
-q.awaitAll(function(err, data){
-	data.forEach(function(d){
-		if (d.games){
-			var matchingDate = _.findWhere(dates, {str: d.str})
-			matchingDate.games = d.games
-		}
-	})
-	console.log(dates)
+q.awaitAll(function(err){
 	fs.writeFile('dates.json', JSON.stringify(dates, null, 4))
 })
 
@@ -35,15 +28,13 @@ function getGamesFromDate(dateStr, cb){
 
   request(url, function(error, response, html){
     if(!error){
-      var rv = []
+      matchingDate = _.findWhere(dates, {str: dateStr})
+      matchingDate.games = []
       var $ = cheerio.load(html);
-
       $('.align_right.bold_text a').each(function(i){
-      	console.log(i)
-        rv.push({url: $(this).attr('href')})
+        matchingDate.games.push({url: $(this).attr('href')})
       })
   	}
-
-  	cb(null, {str: dateStr, games: rv ? rv : null})
+  	cb(null)
 	})
 }
