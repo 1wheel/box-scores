@@ -1,20 +1,46 @@
 [
     {
-        "str": "month=12&day=01&year=2014"
+        "str": "month=12&day=01&year=2014",
+        "games": [
+            {
+                "url": "/boxscores/201412010LAC.html"
+            }
+        ]
     },
     {
-        "str": "month=12&day=02&year=2014"
+        "str": "month=12&day=02&year=2014",
+        "games": [
+            {
+                "url": "/boxscores/201412020ATL.html"
+            }
+        ]
     },
     {
-        "str": "month=12&day=03&year=2014"
+        "str": "month=12&day=03&year=2014",
+        "games": [
+            {
+                "url": "/boxscores/201412030BOS.html"
+            }
+        ]
     },
     {
-        "str": "month=12&day=04&year=2014"
+        "str": "month=12&day=04&year=2014",
+        "games": [
+            {
+                "url": "/boxscores/201412040GSW.html"
+            }
+        ]
     },
     {
-        "str": "month=12&day=05&year=2014"
+        "str": "month=12&day=05&year=2014",
+        "games": [
+            {
+                "url": "/boxscores/201412050BOS.html"
+            }
+        ]
     },
     {
-        "str": "month=12&day=06&year=2014"
+        "str": "month=12&day=06&year=2014",
+        "games": []
     }
 ]

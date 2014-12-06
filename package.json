@@ -9,7 +9,7 @@
     "request"    : "latest",
     "d3"         : "latest",
     "underscore" : "latest",
-    "queue"      : "latest",
+    "queue-async"      : "latest",
     "cheerio"    : "latest"
   }
 }

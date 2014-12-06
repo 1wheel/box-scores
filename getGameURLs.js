@@ -3,41 +3,46 @@ var d3 = require('d3')
 var queue = require('queue')
 var request = require('request')
 var cheerio = require('cheerio')
-var queue = require('queue')
+var queue = require('queue-async')
+var _ = require('underscore')
+
 
 //download one game a time
-var q = queue(1)
+var q = queue(10)
 
 //load existing games
 var dates = JSON.parse(fs.readFileSync('dates.json', 'utf8'))
 
-//don't update ga
+//don't update days with already loaded scores
 dates.forEach(function(d){
 	if (d.games) return
 	q.defer(getGamesFromDate, d.str)
 })
 
 q.awaitAll(function(err, data){
-	console.log(data)
 	data.forEach(function(d){
-		if (data.games){
-			_.findWhere(dates, {str: d.str}).games = d.games
+		if (d.games){
+			var matchingDate = _.findWhere(dates, {str: d.str})
+			matchingDate.games = d.games
 		}
 	})
+	console.log(dates)
+	fs.writeFile('dates.json', JSON.stringify(dates, null, 4))
 })
 
-function getGamesFromDate(cb, dateStr){
+function getGamesFromDate(dateStr, cb){
   var url = 'http://www.basketball-reference.com/boxscores/index.cgi?' + dateStr
 
   request(url, function(error, response, html){
     if(!error){
       var rv = []
       var $ = cheerio.load(html);
-      $('.stw .align_right.bold_text a').each(function(i, this){
+
+      $('.stw .align_right.bold_text a').each(function(){
         rv.push({url: $(this).attr('href')})
       })
   	}
-  	
-  	cb(null, {str: dateStr, games: rv ? : rv : null})
+
+  	cb(null, {str: dateStr, games: rv ? rv : null})
 	})
 }
