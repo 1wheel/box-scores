@@ -10,7 +10,7 @@ var _ = require('underscore')
 var columns = ['Name', 'MP','FG','FGA','FG%','3P','3PA','3P%','FT','FTA','FT%','ORB','DRB','TRB','AST','STL','BLK','TOV','PF','PTS','Plus']
 
 //download ten game a time
-var q = queue(10)
+var q = queue()
 
 //load existing games
 var dates = JSON.parse(fs.readFileSync('dates.json', 'utf8'))
@@ -20,9 +20,14 @@ var games = []
 dates.forEach(function(day){
   if (!day.games) return
   day.games.forEach(function(game){
-    // if (game.away) return
-    q.defer(getBoxFromGame, game)
+    games.push(game)
   })
+})
+console.log(games.length)
+
+games.filter(function(d){ return !d.away }).forEach(function(game, i){
+  if (i > 5000) return
+  q.defer(getBoxFromGame, game)
 })
 
 q.awaitAll(function(err){

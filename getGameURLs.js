@@ -23,8 +23,8 @@ q.awaitAll(function(err){
 	fs.writeFile('dates.json', JSON.stringify(dates, null, 4))
 })
 
-function getGamesFromDate(date, cb){
-  var url = 'http://www.basketball-reference.com/boxscores/index.cgi?' + date.str
+function getGamesFromDate(day, cb){
+  var url = 'http://www.basketball-reference.com/boxscores/index.cgi?' + day.str
 
   request(url, function(error, response, html){
     if(!error){
