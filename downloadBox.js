@@ -6,7 +6,6 @@ var cheerio = require('cheerio')
 var queue = require('queue-async')
 var _ = require('underscore')
 
-
 //download ten game a time
 var q = queue(10)
 
@@ -14,25 +13,29 @@ var q = queue(10)
 var dates = JSON.parse(fs.readFileSync('dates.json', 'utf8'))
 
 //don't update days with already loaded scores
+var games = []
 dates.forEach(function(day){
-	if (day.games) return
-	q.defer(getGamesFromDate, day)
+  if (!day.games) return
+  day.games.forEach(function(game){
+    if (game.away) return
+    q.defer(getBoxFromGame, game)
+  })
 })
 
 q.awaitAll(function(err){
 	fs.writeFile('dates.json', JSON.stringify(dates, null, 4))
 })
 
-function getGamesFromDate(date, cb){
-  var url = 'http://www.basketball-reference.com/boxscores/index.cgi?' + date.str
+function getBoxFromGame(game, cb){
+  var url = 'http://www.basketball-reference.com/' + game.url
 
   request(url, function(error, response, html){
     if(!error){
-      //add url of each game played on the day to the its games array
-      day.games = []
       var $ = cheerio.load(html);
+
+
       $('.align_right.bold_text a').each(function(i){
-        day.games.push({url: $(this).attr('href')})
+        matchingDate.games.push({url: $(this).attr('href')})
       })
   	}
   	cb(null)
