@@ -6,6 +6,9 @@ var cheerio = require('cheerio')
 var queue = require('queue-async')
 var _ = require('underscore')
 
+//Box score columns
+var columns = ['Name', 'MP','FG','FGA','FG%','3P','3PA','3P%','FT','FTA','FT%','ORB','DRB','TRB','AST','STL','BLK','TOV','PF','PTS','Plus']
+
 //download ten game a time
 var q = queue(10)
 
@@ -17,14 +20,15 @@ var games = []
 dates.forEach(function(day){
   if (!day.games) return
   day.games.forEach(function(game){
-    if (game.away) return
+    // if (game.away) return
     q.defer(getBoxFromGame, game)
   })
 })
 
 q.awaitAll(function(err){
-	fs.writeFile('dates.json', JSON.stringify(dates, null, 4))
+  fs.writeFile('dates.json', JSON.stringify(dates, null, 4))
 })
+
 
 function getBoxFromGame(game, cb){
   var url = 'http://www.basketball-reference.com/' + game.url
@@ -32,11 +36,26 @@ function getBoxFromGame(game, cb){
   request(url, function(error, response, html){
     if(!error){
       var $ = cheerio.load(html);
+      game.home = game.url.slice(-8, -5)
+      game.away = $('.align_center.background_yellow a').text().replace(game.home, '').slice(0, 3)
 
-
-      $('.align_right.bold_text a').each(function(i){
-        matchingDate.games.push({url: $(this).attr('href')})
+      game.players = []
+      ;[game.home, game.away].forEach(function(teamStr){
+        $('#' + teamStr + '_basic tbody tr')
+            .filter(function(i){ return i != 5 })
+            .each(function(){ addPlayerRow(this, teamStr) })        
       })
+
+      function addPlayerRow(el, teamStr){
+        var player = {}
+        $('td', el).each(function(i){
+          player[columns[i]] = $(this).text().replace('Did Not Play', 0)
+        })
+        player.url = $('td a', el).attr('href')
+        player.team = teamStr
+        game.players.push(player)
+      }
+
   	}
   	cb(null)
 	})
