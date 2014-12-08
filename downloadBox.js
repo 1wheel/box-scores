@@ -20,18 +20,19 @@ var games = []
 dates.forEach(function(day){
   if (!day.games) return
   day.games.forEach(function(game){
+    if (day.players) return
     games.push(game)
   })
 })
 console.log(games.length)
 
 games.filter(function(d){ return !d.away }).forEach(function(game, i){
-  if (i > 5000) return
+  if (i > 2000) return
   q.defer(getBoxFromGame, game)
 })
 
 q.awaitAll(function(err){
-  fs.writeFile('dates.json', JSON.stringify(dates, null, 4))
+  fs.writeFile('dates.json', JSON.stringify(dates))
 })
 
 
