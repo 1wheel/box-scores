@@ -1,6 +1,5 @@
 var fs = require('fs')
 var d3 = require('d3')
-var queue = require('queue')
 var request = require('request')
 var cheerio = require('cheerio')
 var queue = require('queue-async')

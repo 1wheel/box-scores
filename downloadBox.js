@@ -1,6 +1,5 @@
 var fs = require('fs')
 var d3 = require('d3')
-var queue = require('queue')
 var request = require('request')
 var cheerio = require('cheerio')
 var queue = require('queue-async')
@@ -20,14 +19,14 @@ var games = []
 dates.forEach(function(day){
   if (!day.games) return
   day.games.forEach(function(game){
-    if (day.players) return
+    if (game.home) return
     games.push(game)
   })
 })
 console.log(games.length)
 
 games.filter(function(d){ return !d.away }).forEach(function(game, i){
-  if (i > 2000) return
+  if (i > 8000) return
   q.defer(getBoxFromGame, game)
 })
 
