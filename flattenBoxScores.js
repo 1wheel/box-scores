@@ -14,9 +14,11 @@ dates.forEach(function(day){
   day.games.forEach(function(game){
     if (!game.players) return
     game.players.forEach(function(player){
-      player.year   = day.str.split('=')[1].split('&')[0]
-      player.month  = day.str.split('=')[2].split('&')[0]
-      player.year   = day.str.split('=')[3].split('&')[0]
+      player.month    = day.str.split('=')[1].split('&')[0]
+      player.day      = day.str.split('=')[2].split('&')[0]
+      player.year     = day.str.split('=')[3].split('&')[0]
+      player.home     = game.home
+      player.away     = game.away
       players.push(player)
     })
   })
